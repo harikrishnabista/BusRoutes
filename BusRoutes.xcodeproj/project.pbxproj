@@ -21,6 +21,9 @@
 		56A65D9B20219AC8003BC96C /* RouteContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A65D9A20219AC8003BC96C /* RouteContainerViewController.swift */; };
 		56A65D9D2021AC91003BC96C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A65D9C2021AC91003BC96C /* Constants.swift */; };
 		56A65D9F2021B4E7003BC96C /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A65D9E2021B4E7003BC96C /* StopTableViewCell.swift */; };
+		56A65DA120223A42003BC96C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A65DA020223A42003BC96C /* Extensions.swift */; };
+		56A65DA820223BBF003BC96C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A65DA620223BBF003BC96C /* LoadingView.swift */; };
+		56A65DA920223BBF003BC96C /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A65DA720223BBF003BC96C /* LoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		56A65D9A20219AC8003BC96C /* RouteContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteContainerViewController.swift; sourceTree = "<group>"; };
 		56A65D9C2021AC91003BC96C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		56A65D9E2021B4E7003BC96C /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		56A65DA020223A42003BC96C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		56A65DA620223BBF003BC96C /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		56A65DA720223BBF003BC96C /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 		56A65D8920211AF8003BC96C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				56A65D9620215AFE003BC96C /* RouteListTableViewCell.swift */,
+				56A65DA620223BBF003BC96C /* LoadingView.swift */,
+				56A65DA720223BBF003BC96C /* LoadingView.xib */,
 				56A65D782021053C003BC96C /* Main.storyboard */,
 				56A65D7D2021053C003BC96C /* LaunchScreen.storyboard */,
 			);
@@ -106,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				56A65D8620210559003BC96C /* RouteListViewController.swift */,
-				56A65D9620215AFE003BC96C /* RouteListTableViewCell.swift */,
 				56A65D98202160A1003BC96C /* RouteDetailViewController.swift */,
 				56A65D9A20219AC8003BC96C /* RouteContainerViewController.swift */,
 				56A65D9E2021B4E7003BC96C /* StopTableViewCell.swift */,
@@ -127,6 +135,7 @@
 			children = (
 				56A65D9420214135003BC96C /* ApiCaller.swift */,
 				56A65D9C2021AC91003BC96C /* Constants.swift */,
+				56A65DA020223A42003BC96C /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -191,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56A65D7F2021053C003BC96C /* LaunchScreen.storyboard in Resources */,
+				56A65DA920223BBF003BC96C /* LoadingView.xib in Resources */,
 				56A65D7C2021053C003BC96C /* Assets.xcassets in Resources */,
 				56A65D7A2021053C003BC96C /* Main.storyboard in Resources */,
 			);
@@ -210,9 +220,11 @@
 				56A65D99202160A1003BC96C /* RouteDetailViewController.swift in Sources */,
 				56A65D9B20219AC8003BC96C /* RouteContainerViewController.swift in Sources */,
 				56A65D9D2021AC91003BC96C /* Constants.swift in Sources */,
+				56A65DA120223A42003BC96C /* Extensions.swift in Sources */,
 				56A65D9020211C89003BC96C /* RouteList.swift in Sources */,
 				56A65D8720210559003BC96C /* RouteListViewController.swift in Sources */,
 				56A65D9720215AFE003BC96C /* RouteListTableViewCell.swift in Sources */,
+				56A65DA820223BBF003BC96C /* LoadingView.swift in Sources */,
 				56A65D752021053C003BC96C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,15 +10,15 @@ import UIKit
 
 class RouteListParser {
     
-    func parseRouteList(data:Data?,resp:URLResponse?,err:Error?) -> RouteList {
+    func parseRouteList(data:Data?,resp:URLResponse?,err:Error?) -> RouteList? {
         
         if let err = err {
             print(err.localizedDescription)
-            return RouteList(routes: [])
+            return nil
         }
         
         guard let data = data else {
-            return RouteList(routes: [])
+            return nil
         }
         
         do{
@@ -27,7 +27,7 @@ class RouteListParser {
             
         } catch let jsonError {
             print("jsonError: \(jsonError)")
-            return RouteList(routes: [])
+            return nil
         }
     }
 }

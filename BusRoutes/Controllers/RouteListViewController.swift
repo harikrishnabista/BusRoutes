@@ -13,11 +13,16 @@ class RouteListViewController: UIViewController, UITableViewDataSource, UITableV
     static let ROUTE_TABLE_VIEW_REUSE_IDENTIFIER = "RouteListTableViewCell"
     static let ROUTE_CONTAINER_VIEW_CONTROLLER = "RouteContainerViewController"
     
-    // make those lazy var for load balance
-    var routeImageCache:[String:UIImage] = [:]
-    var imageDownLoadTasks:[String:URLSessionDataTask] = [:]
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    // make those lazy var for load balance
+    
+    // to cache downloaded images
+    lazy var routeImageCache = [String:UIImage]()
+    
+    // to track downloadTasks
+    lazy var imageDownLoadTasks  = [String:URLSessionDataTask]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,16 +35,18 @@ class RouteListViewController: UIViewController, UITableViewDataSource, UITableV
     func getRoutes() {
         guard let url = URL(string: Constants.API) else { return }
         
+        view.showLoading()
+        
         ApiCaller().getDataFromUrl(url: url) { (data, resp, err) in
             self.routeList = RouteListParser().parseRouteList(data: data, resp: resp, err: err)
             DispatchQueue.main.async {
+                self.view.hideLoading()
                 self.tableView.reloadData()
             }
         }
     }
     
     // UITableViewDataSource delegate methods
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routeList?.routes.count ?? 0
     }
@@ -91,12 +98,16 @@ class RouteListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if let routeDetailViewCon = self.storyboard?.instantiateViewController(withIdentifier: RouteListViewController.ROUTE_CONTAINER_VIEW_CONTROLLER) as? RouteContainerViewController {
-            routeDetailViewCon.routeList = routeList
-            routeDetailViewCon.routeImageCache = routeImageCache
-            routeDetailViewCon.selectedIndex = indexPath.row
-            navigationController?.show(routeDetailViewCon, sender: nil)
+        self.performSegue(withIdentifier: "SegueToRouteContainer", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToRouteContainer" {
+            if let routeDetailViewCon = segue.destination as? RouteContainerViewController {
+                routeDetailViewCon.routeList = routeList!
+                routeDetailViewCon.routeImageCache = routeImageCache
+                routeDetailViewCon.selectedIndex = self.tableView.indexPathForSelectedRow?.row ?? 0
+            }
         }
     }
 

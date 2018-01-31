@@ -21,7 +21,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="4qP-tM-dXD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RouteListTableViewCell" rowHeight="75" id="ERr-ED-76T" customClass="RouteListTableViewCell" customModule="BusRoutes" customModuleProvider="target">
@@ -61,7 +61,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4qP-tM-dXD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Fru-pU-Faw"/>
                             <constraint firstItem="4qP-tM-dXD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NM6-7c-CRM"/>
@@ -73,22 +73,30 @@
                     <navigationItem key="navigationItem" title="Routes" id="Uuz-6j-DKU"/>
                     <connections>
                         <outlet property="tableView" destination="4qP-tM-dXD" id="8Uf-Yf-0J4"/>
+                        <segue destination="W1n-04-2rZ" kind="show" identifier="SegueToRouteContainer" id="x6D-GG-3RZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="488.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="420" y="134"/>
         </scene>
-        <!--Route Container View Controller-->
+        <!--Route-->
         <scene sceneID="mgl-sN-VWd">
             <objects>
-                <viewController storyboardIdentifier="RouteContainerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W1n-04-2rZ" customClass="RouteContainerViewController" customModule="BusRoutes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RouteContainerViewController" title="Route" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W1n-04-2rZ" customClass="RouteContainerViewController" customModule="BusRoutes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ebE-Db-7dS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="lus-sC-yIN"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Route" id="l77-Xf-V0a">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="iconBack" id="c0S-XU-5Kc">
+                            <connections>
+                                <action selector="btnNavBackTapped:" destination="W1n-04-2rZ" id="axY-9A-wBB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rob-Ti-e8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,7 +131,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="92" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="1bK-AE-ngN">
                                 <rect key="frame" x="0.0" y="190" width="375" height="477"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="StopTableViewCell" rowHeight="92" id="pop-7S-l1V" customClass="StopTableViewCell" customModule="BusRoutes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="92"/>
@@ -172,6 +180,7 @@
                                                 <constraint firstItem="K3C-ca-jSu" firstAttribute="top" secondItem="8UP-1T-HZS" secondAttribute="top" constant="10" id="vZ4-0f-WIc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="imgBottomBar" destination="8S6-9Y-5SH" id="7dp-tl-KXC"/>
@@ -189,7 +198,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3Jo-y2-WAs" firstAttribute="leading" secondItem="IIj-uw-Qet" secondAttribute="trailing" constant="5" id="1MP-sq-X7n"/>
                             <constraint firstItem="IIj-uw-Qet" firstAttribute="top" secondItem="2aU-OM-sal" secondAttribute="top" id="7GQ-Bt-CdK"/>
@@ -241,8 +250,9 @@
     </scenes>
     <resources>
         <image name="iconAccessible" width="128" height="128"/>
+        <image name="iconBack" width="37" height="37"/>
         <image name="iconBusPlaceHolder" width="104" height="128"/>
         <image name="iconDot" width="64" height="128"/>
-        <image name="iconVerticleLine" width="86" height="490"/>
+        <image name="iconVerticleLine" width="25" height="142"/>
     </resources>
 </document>

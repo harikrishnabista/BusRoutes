@@ -13,34 +13,38 @@ class RouteContainerViewController: UIViewController, UIPageViewControllerDataSo
     var pageViewController: UIPageViewController?
     var selectedIndex = 0
 
-    var routeList:RouteList!
-    var routeImageCache:[String:UIImage] = [:]
+    lazy var routeList = RouteList(routes:[])
+    lazy var routeImageCache = [String:UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        // Configure the page view controller and add it as a child view controller.
-        self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        //        self.pageViewController!.delegate = self
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let selectedRouteDetailViewControlelr: RouteDetailViewController = self.viewControllerAtIndex(selectedIndex, storyboard: self.storyboard!)!
-        
-        self.pageViewController!.setViewControllers([selectedRouteDetailViewControlelr], direction: .forward, animated: false, completion: {done in })
-        
-        self.pageViewController!.dataSource = self
-        
-        self.addChildViewController(self.pageViewController!)
-        self.view.addSubview(self.pageViewController!.view)
-        
-        // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
-        var pageViewRect = self.view.bounds
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            pageViewRect = pageViewRect.insetBy(dx: 40.0, dy: 40.0)
+        if let storyboard = self.storyboard, let selectedViewCon = self.viewControllerAtIndex(selectedIndex, storyboard: storyboard),let pageViewController = pageViewController{
+            
+            pageViewController.setViewControllers([selectedViewCon], direction: .forward, animated: false, completion: {done in })
+            
+            pageViewController.dataSource = self
+            
+            addChildViewController(pageViewController)
+            view.addSubview(pageViewController.view)
+            
+            // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
+            var pageViewRect = view.bounds
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                pageViewRect = pageViewRect.insetBy(dx: 40.0, dy: 40.0)
+            }
+            
+            pageViewController.view.frame = pageViewRect
+            pageViewController.didMove(toParentViewController: self)
         }
-        self.pageViewController!.view.frame = pageViewRect
-        
-        self.pageViewController!.didMove(toParentViewController: self)
+
+    }
+    
+    @IBAction func btnNavBackTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func viewControllerAtIndex(_ index: Int, storyboard: UIStoryboard) -> RouteDetailViewController? {
@@ -62,9 +66,6 @@ class RouteContainerViewController: UIViewController, UIPageViewControllerDataSo
     }
     
     func indexOfViewController(_ viewController: RouteDetailViewController) -> Int {
-        // Return the index of the given data view controller.
-        // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-        
         for (i,item) in routeList.routes.enumerated() {
             if item.id == viewController.route.id {
                 return i
@@ -72,12 +73,9 @@ class RouteContainerViewController: UIViewController, UIPageViewControllerDataSo
         }
         
         return NSNotFound
-        
-//        return routeList.routes.index(of: viewController.route) ?? NSNotFound
     }
     
     // MARK: - Page View Controller Data Source
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         var index = self.indexOfViewController(viewController as! RouteDetailViewController)
         if (index == 0) || (index == NSNotFound) {
